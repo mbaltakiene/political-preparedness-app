@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.android.politicalpreparedness.election.VoterInfoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.android.politicalpreparedness.MainActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/election_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding"
+            android:singleLine="true"
+            android:background="@color/colorPrimaryDark"
+            app:titleTextColor="@color/white"
+            app:title="@{viewModel.election.name}"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:title="Wisconsin Presidential Primary Election"/>
+
+        <ImageView
+            android:id="@+id/loading_image_view"
+            android:layout_width="@dimen/image_size"
+            android:layout_height="@dimen/image_size"
+            android:contentDescription="@string/loading"
+            android:src="@drawable/loading_animation"
+            app:showLoading="@{viewModel.loading}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/election_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/default_padding"
+            android:textSize="18sp"
+            app:electionDay="@{viewModel.election.electionDay}"
+            app:layout_constraintTop_toBottomOf="@id/election_name"
+            tools:text="12 November 2055" />
+
+        <TextView
+            android:id="@+id/state_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:text="@string/election_information"
+            app:layout_constraintTop_toBottomOf="@id/election_date"
+            app:layout_constraintStart_toStartOf="@id/election_date" />
+
+        <TextView
+            android:id="@+id/state_locations"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/voting_location"
+            android:textSize="18sp"
+            android:onClick="@{()->viewModel.openVotingLocationUrl()}"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/state_header"
+            app:layout_constraintStart_toStartOf="@id/election_date" />
+
+        <TextView
+            android:id="@+id/state_ballot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ballot_information"
+            android:textSize="18sp"
+            android:onClick="@{()->viewModel.openBallotInformationUrl()}"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/state_locations"
+            app:layout_constraintStart_toStartOf="@id/election_date" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/address_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="state_correspondence_header,address" />
+
+        <TextView
+            android:id="@+id/state_correspondence_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/normal_margin"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="@string/state_correspondence"
+            app:layout_constraintTop_toBottomOf="@id/state_ballot"
+            app:layout_constraintStart_toStartOf="@id/election_date" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="@{viewModel.voterInfo.state[0].electionAdministrationBody.correspondenceAddress.toFormattedString()}"
+            app:layout_constraintTop_toBottomOf="@id/state_correspondence_header"
+            app:layout_constraintStart_toStartOf="@id/election_date"
+            tools:text="Address"/>
+
+        <Button
+            android:id="@+id/save_election_button"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginBottom="@dimen/button_bottom_margin"
+            android:layout_marginEnd="@dimen/button_margin"
+            android:layout_marginStart="@dimen/button_margin"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:onClick="@{()->viewModel.followOrUnfollowElection()}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/default_text_size"
+            app:followedElection="@{viewModel.followedElection}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/address"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="@string/follow_election" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

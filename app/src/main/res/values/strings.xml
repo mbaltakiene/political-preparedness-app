@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Political Preparedness</string>
+    <string name="upcoming_elections">Upcoming Elections</string>
+    <string name="saved_elections">Saved Elections</string>
+    <string name="follow_election">Follow Election</string>
+    <string name="unfollow_election">Unfollow Election</string>
+    <string name="find_representatives">Find my representatives</string>
+    <string name="use_my_location">Use my location</string>
+    <string name="my_representatives">My Representatives</string>
+    <string name="representative_search">Representative Search</string>
+    <string name="logo_image">Logo image</string>
+    <string name="voting_location">Voting location</string>
+    <string name="ballot_information">Ballot information</string>
+    <string name="election_information">Election information</string>
+    <string name="state_correspondence">State correspondence</string>
+    <string name="loading">Loading</string>
+    <string name="hint_address_line_1">Address Line 1</string>
+    <string name="hint_address_line_2">Address Line 2</string>
+    <string name="hint_city">City</string>
+    <string name="hint_zip">Zip</string>
+    <string name="profile_picture">Profile picture</string>
+    <string name="www_icon">WWW icon</string>
+    <string name="twitter_icon">Twitter icon</string>
+    <string name="facebook_icon">Facebook icon</string>
+    <string name="unable_get_location">Unable to get location.</string>
+    <string name="location_not_available">Location permission not granted. Go to Settings>Permissions>Location>allow Location permission.</string>
+    <string name="location_permission_required">Some app functionality may be unavailable without location permission.</string>
+    <string name="OK">OK\n</string>
+
+
+</resources>
